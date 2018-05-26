@@ -18,10 +18,10 @@ cat << EOF > /etc/lightdm/lightdm.conf.d/50-autologin.conf
 autologin-user=$username
 EOF
 
-su $username
 cd /home/$username
 [[ -d dotfiles ]] || rm .bashrc
-git clone $dotfiles || true
+su $username -c "git clone $dotfiles || true"
 cd dotfiles
-stow * || true
-git clone $dockerfiles || true
+su $username -c "stow * || true"
+cd ..
+su $username -c "git clone $dockerfiles || true"

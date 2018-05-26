@@ -3,6 +3,9 @@
 username=stuff
 dotfiles="https://github.com/SupaStuff/dotfiles.git --branch=dev"
 dockerfiles="https://github.com/SupaStuff/dockerfiles.git"
+TZ="America/New_York"
+
+ln -s /usr/share/zoneinfo/$TZ /etc/localtime
 
 useradd -ms /bin/bash $username || true
 usermod -aG sudo $username
@@ -25,3 +28,5 @@ cd dotfiles
 su $username -c "stow * || true"
 cd ..
 su $username -c "git clone $dockerfiles || true"
+su $username -c "mkdir stuff code || true"
+su $username -c "mv Documents Downloads Music Pictures Template Videos stuff || true"

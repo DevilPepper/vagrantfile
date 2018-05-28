@@ -73,6 +73,11 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "provision.sh"
   config.vm.provision "shell", path: "docker.sh"
   config.vm.provision "shell", path: "user-config.sh"
+
+  #optional applications
+  config.vm.provision "shell", path: "atom.sh"
+  # config.vm.provision "shell", path: "vscode.sh"
+
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.

@@ -70,13 +70,13 @@ Vagrant.configure("2") do |config|
   #
   # View the documentation for the provider you are using for more
   # information on available options.
-  config.vm.provision "shell", path: "provision.sh"
-  config.vm.provision "shell", path: "docker.sh"
-  config.vm.provision "shell", path: "user-config.sh"
+  config.vm.provision "shell", path: "setup/provision.sh"
+  config.vm.provision "shell", path: "app/docker.sh"
+  config.vm.provision "shell", path: "setup/user-config.sh"
 
   #optional applications
-  config.vm.provision "shell", path: "atom.sh"
-  # config.vm.provision "shell", path: "vscode.sh"
+  config.vm.provision "shell", path: "app/atom.sh"
+  # config.vm.provision "shell", path: "app/vscode.sh"
 
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the

@@ -5,7 +5,7 @@ dotfiles="https://github.com/SupaStuff/dotfiles.git --branch=dev"
 dockerfiles="https://github.com/SupaStuff/dockerfiles.git"
 TZ="America/New_York"
 
-ln -s /usr/share/zoneinfo/$TZ /etc/localtime
+ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
 
 useradd -ms /bin/bash $username || true
 usermod -aG sudo $username

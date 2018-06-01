@@ -1,9 +1,9 @@
 #!/bin/bash
 
-username=stuff
-dotfiles="https://github.com/SupaStuff/dotfiles.git --branch=dev"
-dockerfiles="https://github.com/SupaStuff/dockerfiles.git"
-TZ="America/New_York"
+username=$1
+dotfiles=$2
+dockerfiles=$3
+TZ=$4
 
 ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
 

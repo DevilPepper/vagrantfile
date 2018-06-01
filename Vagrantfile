@@ -81,8 +81,9 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "setup/grub.sh"
   config.vm.provision "shell", path: "app/docker.sh"
   config.vm.provision "shell", path: "setup/user-config.sh",
-                               :args => "#{username} '#{dotfiles}' '#{dockerfiles}' #{TZ}"
-  config.vm.provision "shell", path: "setup/autostart_gsettings.sh"
+                               :args => "#{username} #{TZ}"
+  config.vm.provision "shell", path: "setup/autostart_gsettings.sh",
+                               :args => "'#{dotfiles}' '#{dockerfiles}'"
   config.vm.provision "shell", path: "app/vbox.sh"
 
   #optional applications

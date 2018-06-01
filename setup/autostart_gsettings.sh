@@ -4,7 +4,7 @@
 cat << EOF > /etc/xdg/autostart/set-gnome-settings.sh.desktop
 [Desktop Entry]
 Type=Application
-Exec=/vagrant/script/dconf.sh
+Exec=/vagrant/script/dconf.sh '$1' '$2'
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true

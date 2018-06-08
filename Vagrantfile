@@ -1,10 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-username="stuff"
-dotfiles="https://github.com/SupaStuff/dotfiles.git --branch=dev"
-dockerfiles="https://github.com/SupaStuff/dockerfiles.git"
-TZ="America/New_York"
+# username="stuff"
+# dotfiles="https://github.com/SupaStuff/dotfiles.git --branch=dev"
+# dockerfiles="https://github.com/SupaStuff/dockerfiles.git"
+# TZ="America/New_York"
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
@@ -17,8 +17,16 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "bento/debian-9.4"
-  config.vm.box_version = "201803.24.0"
+  config.vm.box = "Stuff/EdgeOnWindows10"
+  config.vm.box_version = "0"
+
+  # Settings specific to a windows box
+  config.vm.guest = :windows
+  # config.vm.communicator = :winrm
+  # config.winrm.password = "Passw0rd!"
+  # config.winrm.username = "IEUser"
+  config.ssh.password = "Passw0rd!"
+  config.ssh.username = "IEUser"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -34,10 +42,10 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine and only allow access
   # via 127.0.0.1 to disable public access
-  config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
-  config.vm.network "forwarded_port", guest: 3000, host: 3000, host_ip: "127.0.0.1"
-  config.vm.network "forwarded_port", guest: 4200, host: 4200, host_ip: "127.0.0.1"
-  config.vm.network "forwarded_port", guest: 8888, host: 8888, host_ip: "127.0.0.1"
+  # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+  # config.vm.network "forwarded_port", guest: 3000, host: 3000, host_ip: "127.0.0.1"
+  # config.vm.network "forwarded_port", guest: 4200, host: 4200, host_ip: "127.0.0.1"
+  # config.vm.network "forwarded_port", guest: 8888, host: 8888, host_ip: "127.0.0.1"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -58,10 +66,11 @@ Vagrant.configure("2") do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
+
   config.vm.provider "virtualbox" do |vb|
   #   # Display the VirtualBox GUI when booting the machine
       vb.gui = true
-      vb.name = "bento.debian-9.4"
+      vb.name = "stuff.edgeOnWindows10"
   #
   #   # Customize the amount of memory on the VM:
       vb.memory = "4096"
@@ -74,28 +83,27 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--audioout", "on"]
       vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
       vb.customize ["modifyvm", :id, "--draganddrop", "bidirectional"]
-
   end
 
   # View the documentation for the provider you are using for more
   # information on available options.
 
-  config.vm.provision "shell", path: "setup/apt-get.sh"
-  config.vm.provision "shell", path: "setup/grub.sh"
-  config.vm.provision "shell", path: "app/docker.sh"
-  config.vm.provision "shell", path: "setup/user-config.sh",
-                               :args => "#{username} #{TZ}"
-  config.vm.provision "shell", path: "setup/autostart_gsettings.sh",
-                               :args => "'#{dotfiles}' '#{dockerfiles}'"
-  config.vm.provision "shell", path: "app/vbox.sh"
-
-  #optional applications
-  config.vm.provision "shell", path: "app/atom.sh"
-  # config.vm.provision "shell", path: "app/vscode.sh"
-
-  # for VirtualBox guest additions
-  config.vm.provision "shell", inline: "echo 'Restarting... /vagrant will be empty'"
-  config.vm.provision "shell", inline: "shutdown -r 0"
+  # config.vm.provision "shell", path: "setup/apt-get.sh"
+  # config.vm.provision "shell", path: "setup/grub.sh"
+  # config.vm.provision "shell", path: "app/docker.sh"
+  # config.vm.provision "shell", path: "setup/user-config.sh",
+  #                              :args => "#{username} #{TZ}"
+  # config.vm.provision "shell", path: "setup/autostart_gsettings.sh",
+  #                              :args => "'#{dotfiles}' '#{dockerfiles}'"
+  # config.vm.provision "shell", path: "app/vbox.sh"
+  #
+  # #optional applications
+  # config.vm.provision "shell", path: "app/atom.sh"
+  # # config.vm.provision "shell", path: "app/vscode.sh"
+  #
+  # # for VirtualBox guest additions
+  # config.vm.provision "shell", inline: "echo 'Restarting... /vagrant will be empty'"
+  # config.vm.provision "shell", inline: "shutdown -r 0"
 
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
